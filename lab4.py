@@ -14,13 +14,14 @@ import chromadb
 
 # Define your function to create the ChromaDB collection
 def create_lab4_chromadb():
+    
     if 'Lab4_vectorDB' not in st.session_state:
         # Initialize ChromaDB client
         client = chromadb.PersistentClient(path="data/mychromadb")
         
         if 'Lab4Collection' not in st.session_state:
-            
-            collection = client.create_collection("Lab4Collection")
+            st.session_state["Lab4Collection"] = client.create_collection("Lab4Collection")
+            collection = st.session_state["Lab4Collection"]
 
         # Load PDF files and convert to text
         pdf_files = ["data/file1.pdf", "data/file2.pdf", "data/file3.pdf", "data/file4.pdf", "data/file5.pdf", "data/file6.pdf", "data/file7.pdf"] 
